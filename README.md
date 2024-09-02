@@ -1,64 +1,32 @@
-# Twelve-Pulse Converter Design and Simulation
+# Output Voltage Regulation of Buck Converter using Type-II Compensator
 
 ## Project Overview
-This project involves the design, simulation, and analysis of a twelve-pulse converter system using Simulink. The primary goal is to improve power quality by converting three-phase AC voltage into DC voltage with reduced harmonic distortion, minimized DC output ripple, and enhanced power factor. This converter system is particularly suitable for applications requiring high-quality DC power, such as industrial drives and HVDC transmission systems.
 
-## Key Components
-
-### 1. Three-Phase AC Inputs
-- **Description**: The system starts with three-phase AC inputs, which provide the initial power that will be converted to DC.
-- **Purpose**: To supply the necessary power to the system for conversion.
-
-### 2. Phase-Shifting Transformer
-- **Description**: A transformer with a primary winding connected to the AC supply and two secondary windings (star and delta configurations). 
-- **Purpose**: The 30-degree phase shift between these secondary windings is crucial for harmonic cancellation.
-
-### 3. Rectifiers
-- **Description**: Two six-pulse rectifiers convert the AC input into DC.
-- **Purpose**: To combine the outputs from the rectifiers to produce a twelve-pulse DC waveform with significantly lower harmonic content and ripple.
-
-### 4. Current and Voltage Measurement
-- **Description**: Blocks within the simulation that monitor the current and voltage at various points in the system.
-- **Purpose**: To provide data for analyzing the converter’s performance.
-
-## Simulation Setup
-
-### 1. Simulink Model
-- **Tool**: MATLAB/Simulink
-- **Description**: The project is modeled in Simulink, including the AC inputs, phase-shifting transformer, rectifiers, and measurement blocks.
-
-### 2. Simulation Parameters
-- **Description**: The simulation is configured with realistic operating parameters, such as switching frequency and load conditions, to allow for accurate performance analysis.
+This project focuses on the design, simulation, and implementation of a Type-II compensator to achieve precise output voltage regulation in a Buck converter. The Buck converter is a DC-DC converter that steps down the input voltage to a lower output voltage, widely used in power supply systems and battery chargers. The primary objective of this project is to ensure accurate tracking of the output voltage with the reference voltage while maintaining stability despite changes in load or input conditions.
 
 ## Objectives
 
-### 1. Harmonic Analysis
-- **Goal**: To analyze and quantify the harmonic content in the AC supply and DC output, with a focus on the reduction of the 5th and 7th harmonics.
+- Design a Type-II compensator for a Buck converter.
+- Achieve accurate output voltage tracking with a reference voltage.
+- Ensure system stability under varying load and input conditions.
+- Improve phase margin and adjust gain crossover frequency for enhanced stability.
 
-### 2. DC Output Ripple Analysis
-- **Goal**: To evaluate the ripple in the DC output, with lower ripple indicating higher power quality.
+## Uncompensated System Analysis
 
-### 3. Power Factor Improvement
-- **Goal**: To improve the power factor, reducing reactive power and increasing efficiency.
+In this stage, the open-loop Buck converter system is analyzed by deriving its transfer function and simulating its performance using MATLAB. The system’s stability and frequency response are evaluated using Bode plots. This analysis highlights the need for compensation due to the system's low phase margin and high gain crossover frequency, which indicate potential instability.
 
-## Results
+## Compensator Design
 
-### 1. Harmonic Reduction
-- **Outcome**: The simulation shows a significant reduction in harmonic distortion compared to a six-pulse rectifier, leading to a cleaner AC waveform.
+The next step involves designing a Type-II compensator to improve the system’s stability. The compensator is tailored to achieve a specific gain crossover frequency (100 Hz) and a phase margin of 120°. MATLAB is used to derive and simulate the compensator’s transfer function, which is then applied to the Buck converter to enhance its performance.
 
-### 2. Smoother DC Output
-- **Outcome**: The twelve-pulse configuration results in minimal ripple in the DC output, providing a stable power supply.
+## Closed-Loop System Implementation
 
-### 3. Improved Power Factor
-- **Outcome**: The system exhibits a better power factor, reducing reactive power and improving overall efficiency.
+The compensator is integrated into the Buck converter’s control loop to create a closed-loop system. This system is simulated in MATLAB/Simulink to evaluate its performance under various operating conditions. The closed-loop system allows for continuous adjustment of the PWM signal, ensuring that the output voltage closely follows the reference voltage.
 
-## Applications
+## Simulation and Analysis
 
-### 1. Industrial Drives
-- **Use Case**: Ideal for applications requiring high-quality DC power, ensuring smooth operation of motors and other equipment.
+Simulations of the closed-loop system are conducted using MATLAB/Simulink. Key parameters such as input voltage, output voltage, inductor current, and compensator output are analyzed. A Bode plot of the compensated system is generated to confirm improvements in phase margin and overall stability, demonstrating the effectiveness of the compensator in achieving the desired performance.
 
-### 2. HVDC Transmission Systems
-- **Use Case**: Suitable for converting AC to DC for efficient long-distance power transmission, with reduced harmonics and improved power factor.
+## Results and Conclusion
 
-## Conclusion
-The twelve-pulse converter designed and simulated in this project significantly enhances power quality by reducing harmonic distortion, minimizing DC output ripple, and improving the power factor. The successful simulation validates the design’s suitability for applications where power quality is critical.
+The project concludes by demonstrating the effectiveness of the Type-II compensator in stabilizing the Buck converter’s output voltage. The compensator ensures accurate voltage regulation, improves system stability, and enhances the phase margin, making the system robust under varying load and input conditions.
